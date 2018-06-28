@@ -1,0 +1,2 @@
+Remove all references to EEPROM
+General clean up
