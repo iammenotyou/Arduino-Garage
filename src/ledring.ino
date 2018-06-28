@@ -2,20 +2,33 @@
 
 void led_stop(){
   //FastLED.showColor(CRGB::Red);
-  fill_solid(&leds[0], 16,CRGB::Red);
+  fill_solid(&leds[0], 24,CRGB::Red);
   FastLED.show();
+  delay(100);
+  fill_solid(&leds[0], 24,CRGB::Black);
+  FastLED.show();
+  delay(50);
+  
 }
 
 void led_off(){
   //FastLED.showColor(CRGB::Black);
-  fill_solid(&leds[0], 16,CRGB::Black);
+  fill_solid(&leds[0], 24,CRGB::Black);
   FastLED.show();
 }
 
 void led_show_value(uint16_t value){
-  uint8_t no_of_leds = map(value,parking_distance,MAX_DISTANCE,16,0);
+  uint8_t no_of_leds = map(value,parking_distance,MAX_DISTANCE,24,0);
 
-  for (uint8_t led = 0; led<=no_of_leds; led++){leds[led] = CRGB::Green;}
+  for (uint8_t led = 0; led<=no_of_leds; led++){
+	  if(led <=11){
+		  leds[led] = CRGB::Yellow;
+	  }
+	  if(led >11){
+		  leds[led] = CRGB::Green;
+	  }
+	  
+	  }
   for (uint8_t led = NUM_LEDS - 1; led > no_of_leds; led--){leds[led] = CRGB::Black;}
 
   FastLED.show();
